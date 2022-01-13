@@ -1,10 +1,14 @@
-'''Your program must also meet the following requirements.'''
+'''Daniel McNary
+1/13/2022
+CSE 210 Programming With Classes
 
-'''1.The program must have a comment with assignment and author names.'''
-'''2.The program must have at least one if/then block.'''
-'''3.The program must have at least one while loop.'''
-'''4.The program must have more than one function.'''
-'''5.The program must have a function called main.'''
+Your program must also meet the following requirements.
+
+1.The program must have a comment with assignment and author names.
+2.The program must have at least one if/then block.
+3.The program must have at least one while loop.
+4.The program must have more than one function.
+5.The program must have a function called main.'''
 
 #-------Global Variables-----------#
 
