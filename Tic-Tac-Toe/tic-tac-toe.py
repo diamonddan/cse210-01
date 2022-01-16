@@ -10,35 +10,35 @@ Your program must also meet the following requirements.
 4.The program must have more than one function.
 5.The program must have a function called main.'''
 
-#-------Global Variables-----------#
 
-board = ["1", "2", "3",
-         "4", "5", "6",
-         "7", "8", "9"]
+
+board = ["-", "-", "-",
+         "-", "-", "-",
+         "-", "-", "-"]
 #If game is still going
-game_still_going = True
+game_continues = True
 #Who won? Or Tie?
 winner = None
 #Whos turn is it?
-current_player = "X"
-
+current_player = 'X'
 
 def main():
 
   display_board()
-
-  while game_still_going:
+  while game_continues:
+   
    handle_turn(current_player)
-    #Check if the game has ended
+   #Check if game is over
    check_if_game_over()
     #Flip to the other player
    flip_player()
    #The game has ended
    if winner == "X" or winner == "O":
     print(winner + " won.")
-   elif winner == None:
-        print("Tie.")
-  
+    print('Thanks for playing')
+   elif game_continues == False:
+       print('Tie')
+       print('Thanks for playing')
 
 
 #Display board
@@ -88,9 +88,9 @@ def check_if_winner():
     return
 
 def check_if_tie():
-    global game_still_going
+    global game_continues
     if "-" not in board:
-        game_still_going = False
+        game_continues = False
     return
 
 
@@ -105,13 +105,13 @@ def flip_player():
 
 def check_rows():
     #Set up global variable
-    global game_still_going
+    global game_continues
     #Check if any of the rows have value and not empty
     row_1 = board[0] ==  board[1] == board[2] != "-"
     row_2 = board[3] ==  board[4] == board[5] != "-"
     row_3 = board[6] ==  board[7] == board[8] != "-"
     if row_1 or row_2 or row_3:
-        game_still_going = False
+        game_continues = False
     #Return the winner (X or O)
     if row_1:
         return board[0]
@@ -124,13 +124,13 @@ def check_rows():
 
 def check_columns():
     #Set up global variable
-    global game_still_going
+    global game_continues
     #Check if any of the rows have value and not empty
     column_1 = board[0] ==  board[3] == board[6] != "-"
     column_2 = board[1] ==  board[4] == board[7] != "-"
     column_3 = board[2] ==  board[5] == board[8] != "-"
     if column_1 or column_2 or column_3:
-        game_still_going = False
+        game_continues = False
     #Return the winner (X or O)
     if column_1:
         return board[0]
@@ -143,19 +143,18 @@ def check_columns():
 
 def check_diagonals():
     #Set up global variable
-    global game_still_going
+    global game_continues
     #Check if any of the rows have value and not empty
     diag_1 = board[0] ==  board[4] == board[8] != "-"
     diag_2 = board[6] ==  board[4] == board[2] != "-"
     if diag_1 or diag_2:
-        game_still_going = False
+        game_continues = False
     #Return the winner (X or O)
     if diag_1:
         return board[0]
     if diag_2:
         return board[6]
     return
-
 
 
 
