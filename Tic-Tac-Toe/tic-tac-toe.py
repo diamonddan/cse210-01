@@ -10,7 +10,8 @@ Your program must also meet the following requirements.
 4.The program must have more than one function.
 5.The program must have a function called main.'''
 
-
+print('Welcome to Tic Tac Toe!')
+print('')
 
 board = ["-", "-", "-",
          "-", "-", "-",
@@ -40,7 +41,6 @@ def main():
        print('Tie')
        print('Thanks for playing')
 
-
 #Display board
 def display_board():
   print(board[0] + " | " + board[1] + " | " + board[2])
@@ -51,7 +51,10 @@ def display_board():
 
 #Handle a single turn of player
 def handle_turn(player):
-  print(player + "'s turn.")
+  print('')
+  print(f"{player}'s turn!")
+  print('')
+  
   position = input("Choose a position from 1-9: ")
   if position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
       position = input("Invalid input. Choose a position from 1-9: ")
@@ -70,19 +73,12 @@ def check_if_winner():
     #Setup global variables
     global winner
 
-    #Check Rows
+    #Check Rows, Columns and Diags
     row_winner = check_rows()
-    #Check Columns
-    column_winner = check_columns()
-    #Check Diagonals
-    diag_winner = check_diagonals()
+    
     
     if row_winner:
         winner = row_winner
-    elif column_winner:
-        winner = column_winner
-    elif diag_winner:
-        winner = diag_winner
     else:
         winner = None
     return
@@ -110,7 +106,12 @@ def check_rows():
     row_1 = board[0] ==  board[1] == board[2] != "-"
     row_2 = board[3] ==  board[4] == board[5] != "-"
     row_3 = board[6] ==  board[7] == board[8] != "-"
-    if row_1 or row_2 or row_3:
+    column_1 = board[0] ==  board[3] == board[6] != "-"
+    column_2 = board[1] ==  board[4] == board[7] != "-"
+    column_3 = board[2] ==  board[5] == board[8] != "-"
+    diag_1 = board[0] ==  board[4] == board[8] != "-"
+    diag_2 = board[6] ==  board[4] == board[2] != "-"
+    if row_1 or row_2 or row_3 or column_1 or column_2 or column_3 or diag_1 or diag_2:
         game_continues = False
     #Return the winner (X or O)
     if row_1:
@@ -119,37 +120,12 @@ def check_rows():
         return board[3]
     if row_3:
         return board[6]
-    return
-
-
-def check_columns():
-    #Set up global variable
-    global game_continues
-    #Check if any of the rows have value and not empty
-    column_1 = board[0] ==  board[3] == board[6] != "-"
-    column_2 = board[1] ==  board[4] == board[7] != "-"
-    column_3 = board[2] ==  board[5] == board[8] != "-"
-    if column_1 or column_2 or column_3:
-        game_continues = False
-    #Return the winner (X or O)
     if column_1:
         return board[0]
     if column_2:
         return board[1]
     if column_3:
         return board[2]
-    return
-
-
-def check_diagonals():
-    #Set up global variable
-    global game_continues
-    #Check if any of the rows have value and not empty
-    diag_1 = board[0] ==  board[4] == board[8] != "-"
-    diag_2 = board[6] ==  board[4] == board[2] != "-"
-    if diag_1 or diag_2:
-        game_continues = False
-    #Return the winner (X or O)
     if diag_1:
         return board[0]
     if diag_2:
